@@ -1,0 +1,9 @@
+type Life {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  description: String!
+  birthday: DateTime!
+  hobbies: [String!]!
+}
