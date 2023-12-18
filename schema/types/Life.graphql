@@ -4,6 +4,6 @@ type Life {
     lastName: String!
     fullName: String!
     description: String!
-    birthday: Date!
+    birthday: DateTime!
     hobbies: [String!]!
 }

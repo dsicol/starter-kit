@@ -51,6 +51,16 @@ union ExternalLink = ResetPasswordLink
 
 scalar JSONObject
 
+type Life {
+  birthday: DateTime!
+  description: String!
+  firstName: String!
+  fullName: String!
+  hobbies: [String!]!
+  id: ID!
+  lastName: String!
+}
+
 type MessageNotice {
   date: DateTime!
   message: String!
@@ -73,6 +83,8 @@ type Mutation {
   completeWebPublicKeyCredentialRegistration(response: JSONObject!, token: String!): Boolean!
   """Create a new account/user"""
   createAccount(email: String!, password: String!, username: String!): User!
+  """Create a new Life object"""
+  createlife(birthday: DateTime!, description: String!, firstName: String!, fullName: String!, hobbies: [String!]!, lastName: String!): Life!
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
   """Enable 2FA / Authenticator for the signed user"""
@@ -128,8 +140,12 @@ type Query {
   generateAuthenticatorChallenge(username: String!): AuthenticationWithWebPublicKeyCredential
   """Generate authenticator secret and qrcode"""
   generateAuthenticatorSetup: AuthenticatorSetup!
+  """Fetch Life document by its ID"""
+  getLife(id: ID!): Life
   """Fetch WebAuthn security keys for a username"""
   getWebauthnKeys(username: String!): [String!]!
+  """Fetch all lives"""
+  listLives: [Life!]!
   """List users"""
   listUsers(filter: UserFilteringRule, pagination: Pagination!, sort: UserSortingRule): PaginatedUsers!
   """Retrieve a link information"""
