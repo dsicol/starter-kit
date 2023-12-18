@@ -33,4 +33,9 @@ type Query {
     Fetch Life document by its ID
     """
     getLife(id: ID!): Life
+
+    """
+    Fetch all lives
+    """
+    listLives: [Life!]!
 }
