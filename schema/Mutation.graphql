@@ -93,6 +93,7 @@ type Mutation {
         lastName: String!,
         fullName: String!,
         description: String!,
+        title: String!
         birthday: DateTime!,
         hobbies: [String!]!): Life!
 }

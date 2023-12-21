@@ -73,8 +73,8 @@ export type Life = {
   firstName: Scalars['String'];
   fullName: Scalars['String'];
   hobbies: Array<Scalars['String']>;
-  id: Scalars['ID'];
   lastName: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type MessageNotice = {
@@ -189,6 +189,7 @@ export type MutationCreatelifeArgs = {
   fullName: Scalars['String'];
   hobbies: Array<Scalars['String']>;
   lastName: Scalars['String'];
+  title: Scalars['String'];
 };
 
 
