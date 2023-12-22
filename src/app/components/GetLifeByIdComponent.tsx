@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetLifeByIdQuery } from 'C:/Users/Darren/Dropbox/PC/Desktop/code-appvantage/starter-kit/src/app/api/index';
+import { useGetLifeByIdQuery } from '../api/index';
 
 const GetLifeByIdComponent = ({ id }) => {
   const { data, loading, error } = useGetLifeByIdQuery(id);
