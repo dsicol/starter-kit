@@ -186,7 +186,6 @@ export type MutationCreatelifeArgs = {
   birthday: Scalars['DateTime'];
   description: Scalars['String'];
   firstName: Scalars['String'];
-  fullName: Scalars['String'];
   hobbies: Array<Scalars['String']>;
   lastName: Scalars['String'];
   title: Scalars['String'];
@@ -261,7 +260,7 @@ export type QueryGenerateAuthenticatorChallengeArgs = {
 
 
 export type QueryGetLifeArgs = {
-  id: Scalars['String'];
+  id: Scalars['ObjectID'];
 };
 
 
@@ -396,7 +395,7 @@ export type RetrieveLinkQuery = { __typename?: 'Query', retrieveLink?: { __typen
 export type LifeDataFragment = { __typename?: 'Life', firstName: string, lastName: string, fullName: string, title: string, description: string, birthday: string | Date, hobbies: Array<string> };
 
 export type GetLifeByIdQueryVariables = Exact<{
-  id: Scalars['String'];
+  id: Scalars['ObjectID'];
 }>;
 
 
@@ -589,7 +588,7 @@ export function useRetrieveLinkLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type RetrieveLinkQueryHookResult = ReturnType<typeof useRetrieveLinkQuery>;
 export type RetrieveLinkLazyQueryHookResult = ReturnType<typeof useRetrieveLinkLazyQuery>;
 export type RetrieveLinkQueryResult = Apollo.QueryResult<RetrieveLinkQuery, RetrieveLinkQueryVariables>;
-export const GetLifeByIdDocument = /*#__PURE__*/ {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getLifeByID"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"life"},"name":{"kind":"Name","value":"getLife"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LifeData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LifeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Life"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"birthday"}},{"kind":"Field","name":{"kind":"Name","value":"hobbies"}}]}}]} as unknown as DocumentNode;
+export const GetLifeByIdDocument = /*#__PURE__*/ {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getLifeByID"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ObjectID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"life"},"name":{"kind":"Name","value":"getLife"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LifeData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LifeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Life"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"birthday"}},{"kind":"Field","name":{"kind":"Name","value":"hobbies"}}]}}]} as unknown as DocumentNode;
 
 /**
  * __useGetLifeByIdQuery__

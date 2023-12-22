@@ -187,7 +187,6 @@ export type GraphQLMutationCreatelifeArgs = {
   birthday: Scalars['DateTime'];
   description: Scalars['String'];
   firstName: Scalars['String'];
-  fullName: Scalars['String'];
   hobbies: Array<Scalars['String']>;
   lastName: Scalars['String'];
   title: Scalars['String'];
@@ -260,7 +259,7 @@ export type GraphQLQueryGenerateAuthenticatorChallengeArgs = {
 
 
 export type GraphQLQueryGetLifeArgs = {
-  id: Scalars['String'];
+  id: Scalars['ObjectID'];
 };
 
 
@@ -578,7 +577,7 @@ export type GraphQLMutationResolvers<ContextType = Context, ParentType extends G
   changePasswordFromToken?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationChangePasswordFromTokenArgs, 'token'>>;
   completeWebPublicKeyCredentialRegistration?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationCompleteWebPublicKeyCredentialRegistrationArgs, 'response' | 'token'>>;
   createAccount?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationCreateAccountArgs, 'email' | 'password' | 'username'>>;
-  createlife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLMutationCreatelifeArgs, 'birthday' | 'description' | 'firstName' | 'fullName' | 'hobbies' | 'lastName' | 'title'>>;
+  createlife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLMutationCreatelifeArgs, 'birthday' | 'description' | 'firstName' | 'hobbies' | 'lastName' | 'title'>>;
   disableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType>;
   enableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationEnableAuthenticatorArgs, 'secret' | 'token'>>;
   generateWebCredentialAuthentication?: Resolver<Maybe<GraphQLResolversTypes['AuthenticationWithWebPublicKeyCredential']>, ParentType, ContextType, RequireFields<GraphQLMutationGenerateWebCredentialAuthenticationArgs, 'username'>>;

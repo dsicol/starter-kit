@@ -84,7 +84,7 @@ type Mutation {
   """Create a new account/user"""
   createAccount(email: String!, password: String!, username: String!): User!
   """Create a new Life object"""
-  createlife(birthday: DateTime!, description: String!, firstName: String!, fullName: String!, hobbies: [String!]!, lastName: String!, title: String!): Life!
+  createlife(birthday: DateTime!, description: String!, firstName: String!, hobbies: [String!]!, lastName: String!, title: String!): Life!
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
   """Enable 2FA / Authenticator for the signed user"""
@@ -141,7 +141,7 @@ type Query {
   """Generate authenticator secret and qrcode"""
   generateAuthenticatorSetup: AuthenticatorSetup!
   """Fetch Life document by its ID"""
-  getLife(id: String!): Life
+  getLife(id: ObjectID!): Life
   """Fetch WebAuthn security keys for a username"""
   getWebauthnKeys(username: String!): [String!]!
   """Fetch all lives"""
