@@ -8,7 +8,7 @@ fragment LifeData on Life {
     hobbies
 }
 
-query getLifeByID($id: String!) {
+query getLifeByID($id: ObjectID!) {
     life: getLife(id: $id) {
         ...LifeData
     }
