@@ -1,0 +1,21 @@
+fragment LifeData on Life {
+    firstName
+    lastName
+    fullName
+    title
+    description
+    birthday
+    hobbies
+}
+
+query getLifeByID($id: String!) {
+    life: getLife(id: $id) {
+        ...LifeData
+    }
+}
+
+query getListLives {
+    life: listLives {
+        ...LifeData
+    }
+}

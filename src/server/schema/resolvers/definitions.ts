@@ -260,7 +260,7 @@ export type GraphQLQueryGenerateAuthenticatorChallengeArgs = {
 
 
 export type GraphQLQueryGetLifeArgs = {
-  id: Scalars['ID'];
+  id: Scalars['String'];
 };
 
 
@@ -446,7 +446,6 @@ export type GraphQLResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   ExternalLink: ResolverTypeWrapper<ExternalLink>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   JSONObject: ResolverTypeWrapper<Scalars['JSONObject']>;
   Life: ResolverTypeWrapper<GraphQLLife>;
@@ -483,7 +482,6 @@ export type GraphQLResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   DateTime: Scalars['DateTime'];
   ExternalLink: ExternalLink;
-  ID: Scalars['ID'];
   Int: Scalars['Int'];
   JSONObject: Scalars['JSONObject'];
   Life: GraphQLLife;
