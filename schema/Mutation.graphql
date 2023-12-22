@@ -91,7 +91,6 @@ type Mutation {
     createlife(
         firstName: String!, 
         lastName: String!,
-        fullName: String!,
         description: String!,
         title: String!
         birthday: DateTime!,
