@@ -8,7 +8,7 @@ const ListLives = () => {
     return <p>Loading...</p>;
   }
 
-  const lives = data?.life;
+  const lives = data.life;
 
   return (
     <div>
