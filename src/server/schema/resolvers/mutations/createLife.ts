@@ -4,17 +4,17 @@ import { getDatabaseContext, Life } from '../../../database';
 
 const mutation: GraphQLMutationResolvers['createlife'] = async (
     root,
-    { firstName, lastName, fullName, title, description, birthday, hobbies }
+    { firstName, lastName, title, description, birthday, hobbies }
 ) => {
     const { collections } = await getDatabaseContext();
     const lifeObject: GraphQLLife = {
-        firstName: firstName,
-        lastName: lastName,
-        fullName: fullName,
-        title: title,
-        birthday: birthday,
-        description: description,
-        hobbies: hobbies,
+        firstName,
+        lastName,
+        fullName: firstName + " " + lastName,
+        title,
+        birthday,
+        description,
+        hobbies,
     };
     const document: Life = {
         _id: new ObjectId(),
