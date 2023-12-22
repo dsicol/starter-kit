@@ -18,12 +18,12 @@ const mutation: GraphQLMutationResolvers['createlife'] = async (
     };
     const document: Life = {
         _id: new ObjectId(),
-        firstName: lifeObject.firstName,
-        lastName: lifeObject.lastName,
-        title: lifeObject.title,
-        birthday: lifeObject.birthday,
-        description: lifeObject.description,
-        hobbies: lifeObject.hobbies,
+        firstName,
+        lastName,
+        title,
+        birthday,
+        description,
+        hobbies,
     };
     try {
         await collections.lives.insertOne(document);
