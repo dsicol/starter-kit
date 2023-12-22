@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { getDatabaseContext, Life } from '../../../database';
+import { getDatabaseContext } from '../../../database';
 import { GraphQLQueryResolvers, GraphQLLife } from '../definitions';
 
 const query: GraphQLQueryResolvers['getLife'] = async (root, { id }) => {
