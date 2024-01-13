@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { getDatabaseContext } from '../../../database';
-import { GraphQLQueryResolvers, GraphQLLife } from '../definitions';
+import { GraphQLQueryResolvers } from '../definitions';
 
 const query: GraphQLQueryResolvers['getLife'] = async (root, { id }) => {
     const { collections } = await getDatabaseContext();
@@ -11,18 +11,8 @@ const query: GraphQLQueryResolvers['getLife'] = async (root, { id }) => {
         throw new Error(`No object with ${id} found`);
     }
 
-    const lifeFields = lifeCursorArray[0];
-    const lifeByID: GraphQLLife = {
-        firstName: lifeFields.firstName,
-        lastName: lifeFields.lastName,
-        fullName: lifeFields.firstName + " " + lifeFields.lastName,
-        title: lifeFields.title,
-        description: lifeFields.description,
-        birthday: lifeFields.birthday,
-        hobbies: lifeFields.hobbies
-    }
-
-    return lifeByID;    
+    const lifeById = lifeCursorArray[0];
+    return lifeById;    
 };
 
 export default query;

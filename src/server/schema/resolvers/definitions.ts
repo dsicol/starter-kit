@@ -4,7 +4,7 @@ import { UserSortingField } from './enums';
 import { ObjectId } from 'mongodb';
 import { FileUploadPromise } from '../context';
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
-import { User, UserSession, ExternalLink, ResetPasswordLink } from '../../database';
+import { User, UserSession, ExternalLink, ResetPasswordLink, Life } from '../../database';
 import { SystemMessage } from '../../utils/systemMessage';
 import { AuthenticationResponse } from './typings';
 import { Context, RootDocument } from '../context';
@@ -76,6 +76,7 @@ export type GraphQLLife = {
   firstName: Scalars['String'];
   fullName: Scalars['String'];
   hobbies: Array<Scalars['String']>;
+  id: Scalars['ObjectID'];
   lastName: Scalars['String'];
   title: Scalars['String'];
 };
@@ -447,7 +448,7 @@ export type GraphQLResolversTypes = {
   ExternalLink: ResolverTypeWrapper<ExternalLink>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   JSONObject: ResolverTypeWrapper<Scalars['JSONObject']>;
-  Life: ResolverTypeWrapper<GraphQLLife>;
+  Life: ResolverTypeWrapper<Life>;
   MessageNotice: ResolverTypeWrapper<GraphQLMessageNotice>;
   Mutation: ResolverTypeWrapper<RootDocument>;
   ObjectID: ResolverTypeWrapper<Scalars['ObjectID']>;
@@ -483,7 +484,7 @@ export type GraphQLResolversParentTypes = {
   ExternalLink: ExternalLink;
   Int: Scalars['Int'];
   JSONObject: Scalars['JSONObject'];
-  Life: GraphQLLife;
+  Life: Life;
   MessageNotice: GraphQLMessageNotice;
   Mutation: RootDocument;
   ObjectID: Scalars['ObjectID'];
@@ -557,6 +558,7 @@ export type GraphQLLifeResolvers<ContextType = Context, ParentType extends Graph
   firstName?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   fullName?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   hobbies?: Resolver<Array<GraphQLResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<GraphQLResolversTypes['ObjectID'], ParentType, ContextType>;
   lastName?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;

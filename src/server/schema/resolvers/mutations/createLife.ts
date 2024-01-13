@@ -7,15 +7,6 @@ const mutation: GraphQLMutationResolvers['createlife'] = async (
     { firstName, lastName, title, description, birthday, hobbies }
 ) => {
     const { collections } = await getDatabaseContext();
-    const lifeObject: GraphQLLife = {
-        firstName,
-        lastName,
-        fullName: firstName + " " + lastName,
-        title,
-        birthday,
-        description,
-        hobbies,
-    };
     const document: Life = {
         _id: new ObjectId(),
         firstName,
@@ -30,7 +21,7 @@ const mutation: GraphQLMutationResolvers['createlife'] = async (
     } catch (error) {
         throw error;
     }
-    return lifeObject;
+    return document
 };
 
 export default mutation;

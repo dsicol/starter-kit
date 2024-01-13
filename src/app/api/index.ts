@@ -73,6 +73,7 @@ export type Life = {
   firstName: Scalars['String'];
   fullName: Scalars['String'];
   hobbies: Array<Scalars['String']>;
+  id: Scalars['ObjectID'];
   lastName: Scalars['String'];
   title: Scalars['String'];
 };
