@@ -5,13 +5,12 @@ import { GraphQLQueryResolvers } from '../definitions';
 const query: GraphQLQueryResolvers['getLife'] = async (root, { id }) => {
     const { collections } = await getDatabaseContext();
     const lifeID = new ObjectId(id);
-    const lifeCursorArray = await collections.lives.find({"_id": lifeID}).toArray();
+    const lifeById = await collections.lives.findOne({"_id": lifeID});
 
-    if (lifeCursorArray.length == 0) {
+    if (lifeById == null) {
         throw new Error(`No object with ${id} found`);
     }
 
-    const lifeById = lifeCursorArray[0];
     return lifeById;    
 };
 
