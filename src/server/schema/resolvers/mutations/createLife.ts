@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { GraphQLMutationResolvers, GraphQLLife } from '../definitions';
+import { GraphQLMutationResolvers } from '../definitions';
 import { getDatabaseContext, Life } from '../../../database';
 
 const mutation: GraphQLMutationResolvers['createlife'] = async (
