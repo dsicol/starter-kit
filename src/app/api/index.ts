@@ -78,6 +78,15 @@ export type Life = {
   title: Scalars['String'];
 };
 
+export type LifeInput = {
+  birthday: Scalars['DateTime'];
+  description: Scalars['String'];
+  firstName: Scalars['String'];
+  hobbies: Array<Scalars['String']>;
+  lastName: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type MessageNotice = {
   __typename?: 'MessageNotice';
   date: Scalars['DateTime'];
@@ -184,12 +193,7 @@ export type MutationCreateAccountArgs = {
 
 
 export type MutationCreatelifeArgs = {
-  birthday: Scalars['DateTime'];
-  description: Scalars['String'];
-  firstName: Scalars['String'];
-  hobbies: Array<Scalars['String']>;
-  lastName: Scalars['String'];
-  title: Scalars['String'];
+  lifeInput?: InputMaybe<LifeInput>;
 };
 
 

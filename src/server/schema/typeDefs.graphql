@@ -62,6 +62,15 @@ type Life {
   title: String!
 }
 
+input LifeInput {
+  birthday: DateTime!
+  description: String!
+  firstName: String!
+  hobbies: [String!]!
+  lastName: String!
+  title: String!
+}
+
 type MessageNotice {
   date: DateTime!
   message: String!
@@ -85,7 +94,7 @@ type Mutation {
   """Create a new account/user"""
   createAccount(email: String!, password: String!, username: String!): User!
   """Create a new Life object"""
-  createlife(birthday: DateTime!, description: String!, firstName: String!, hobbies: [String!]!, lastName: String!, title: String!): Life!
+  createlife(lifeInput: LifeInput): Life!
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
   """Enable 2FA / Authenticator for the signed user"""

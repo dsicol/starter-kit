@@ -8,3 +8,12 @@ type Life {
     birthday: DateTime!
     hobbies: [String!]!
 }
+
+input LifeInput {
+    firstName: String!
+    lastName: String!
+    description: String!
+    title: String!
+    birthday: DateTime!
+    hobbies: [String!]!
+}

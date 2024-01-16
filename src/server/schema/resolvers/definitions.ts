@@ -81,6 +81,15 @@ export type GraphQLLife = {
   title: Scalars['String'];
 };
 
+export type GraphQLLifeInput = {
+  birthday: Scalars['DateTime'];
+  description: Scalars['String'];
+  firstName: Scalars['String'];
+  hobbies: Array<Scalars['String']>;
+  lastName: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type GraphQLMessageNotice = {
   date: Scalars['DateTime'];
   message: Scalars['String'];
@@ -185,12 +194,7 @@ export type GraphQLMutationCreateAccountArgs = {
 
 
 export type GraphQLMutationCreatelifeArgs = {
-  birthday: Scalars['DateTime'];
-  description: Scalars['String'];
-  firstName: Scalars['String'];
-  hobbies: Array<Scalars['String']>;
-  lastName: Scalars['String'];
-  title: Scalars['String'];
+  lifeInput?: InputMaybe<GraphQLLifeInput>;
 };
 
 
@@ -449,6 +453,7 @@ export type GraphQLResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>;
   JSONObject: ResolverTypeWrapper<Scalars['JSONObject']>;
   Life: ResolverTypeWrapper<Life>;
+  LifeInput: GraphQLLifeInput;
   MessageNotice: ResolverTypeWrapper<GraphQLMessageNotice>;
   Mutation: ResolverTypeWrapper<RootDocument>;
   ObjectID: ResolverTypeWrapper<Scalars['ObjectID']>;
@@ -485,6 +490,7 @@ export type GraphQLResolversParentTypes = {
   Int: Scalars['Int'];
   JSONObject: Scalars['JSONObject'];
   Life: Life;
+  LifeInput: GraphQLLifeInput;
   MessageNotice: GraphQLMessageNotice;
   Mutation: RootDocument;
   ObjectID: Scalars['ObjectID'];
@@ -579,7 +585,7 @@ export type GraphQLMutationResolvers<ContextType = Context, ParentType extends G
   changePasswordFromToken?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationChangePasswordFromTokenArgs, 'token'>>;
   completeWebPublicKeyCredentialRegistration?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationCompleteWebPublicKeyCredentialRegistrationArgs, 'response' | 'token'>>;
   createAccount?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationCreateAccountArgs, 'email' | 'password' | 'username'>>;
-  createlife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLMutationCreatelifeArgs, 'birthday' | 'description' | 'firstName' | 'hobbies' | 'lastName' | 'title'>>;
+  createlife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, Partial<GraphQLMutationCreatelifeArgs>>;
   disableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType>;
   enableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationEnableAuthenticatorArgs, 'secret' | 'token'>>;
   generateWebCredentialAuthentication?: Resolver<Maybe<GraphQLResolversTypes['AuthenticationWithWebPublicKeyCredential']>, ParentType, ContextType, RequireFields<GraphQLMutationGenerateWebCredentialAuthenticationArgs, 'username'>>;
