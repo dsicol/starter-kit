@@ -1,25 +1,10 @@
 import { getDatabaseContext} from '../../../database';
-import { GraphQLQueryResolvers, GraphQLLife } from '../definitions';
+import { GraphQLQueryResolvers } from '../definitions';
 
 const query: GraphQLQueryResolvers['listLives'] = async (root) => {
     const { collections } = await getDatabaseContext();
-    const lifeCursorArray = await collections.lives.find({}).toArray();
-
-    if (lifeCursorArray.length == 0) {
-        throw new Error(`No lives found`);
-    }
-    
-    const lifeList: Array<GraphQLLife> = lifeCursorArray.map((lifeData) => ({
-        firstName: lifeData.firstName,
-        lastName: lifeData.lastName,
-        fullName: lifeData.firstName + ' ' + lifeData.lastName,
-        title: lifeData.title,
-        description: lifeData.description,
-        birthday: lifeData.birthday,
-        hobbies: lifeData.hobbies,
-    }));
-
-    return lifeList;    
+    const lives = await collections.lives.find().toArray();
+    return lives;   
 };
 
 export default query;

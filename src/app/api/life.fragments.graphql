@@ -1,0 +1,12 @@
+fragment LifeDetail on Life {
+    fullName
+    title
+    description
+    birthday
+    hobbies
+}
+
+fragment LifeOverview on Life {
+    id
+    fullName
+}

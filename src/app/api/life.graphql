@@ -1,21 +1,13 @@
-fragment LifeData on Life {
-    firstName
-    lastName
-    fullName
-    title
-    description
-    birthday
-    hobbies
-}
+#import "./life.fragments.graphql"
 
 query getLifeByID($id: ObjectID!) {
     life: getLife(id: $id) {
-        ...LifeData
+        ...LifeDetail
     }
 }
 
 query getListLives {
     life: listLives {
-        ...LifeData
+        ...LifeOverview
     }
 }
