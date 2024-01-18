@@ -11,3 +11,9 @@ query getListLives {
         ...LifeOverview
     }
 }
+
+mutation createLife($lifeInput: LifeInput!) {
+    life: createlife(lifeInput: $lifeInput) {
+        ...CreateLifeInput
+    }
+}

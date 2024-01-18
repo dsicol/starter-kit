@@ -10,3 +10,12 @@ fragment LifeOverview on Life {
     id
     fullName
 }
+
+fragment CreateLifeInput on Life {
+    firstName
+    lastName
+    title
+    description
+    birthday
+    hobbies
+}
