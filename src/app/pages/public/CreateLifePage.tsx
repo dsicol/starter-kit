@@ -1,6 +1,6 @@
 import React from 'react';
-import CreateLifeForm from '../../components/CreateLifeForm';
+import CreateLifeComponent from '../../components/CreateLifeComponent';
 
-const CreateLifePage = () => <CreateLifeForm />;
+const CreateLifePage = () => <CreateLifeComponent />;
 
 export default CreateLifePage;

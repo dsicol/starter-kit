@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Life } from '../api';
 
-type ListLivesComponentProp = { lives: [Life] };
+type ListLivesComponentProp = { lives: Array<Life> };
 
 const ListLivesComponent = ({ lives }: ListLivesComponentProp) => {
     const { t } = useTranslation(['lifePage']);

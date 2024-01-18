@@ -5,7 +5,7 @@ import { useGetLifeByIdQuery } from '../api/index';
 type LifeDetailsComponentProp = { id: string };
 
 const LifeDetailsComponent = ({ id }: LifeDetailsComponentProp) => {
-    const { data, loading, error } = useGetLifeByIdQuery({ variables: { id } });
+    const { data, loading, error } = useGetLifeByIdQuery({ variables: { id }, fetchPolicy: 'cache-first' });
     const { t } = useTranslation(['lifePage']);
 
     if (loading) {
