@@ -193,7 +193,7 @@ export type MutationCreateAccountArgs = {
 
 
 export type MutationCreatelifeArgs = {
-  lifeInput?: InputMaybe<LifeInput>;
+  lifeInput: LifeInput;
 };
 
 
