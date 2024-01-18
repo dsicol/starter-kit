@@ -247,7 +247,7 @@ export type Query = {
   /** Generate authenticator secret and qrcode */
   generateAuthenticatorSetup: AuthenticatorSetup;
   /** Fetch Life document by its ID */
-  getLife: Life;
+  getLife?: Maybe<Life>;
   /** Fetch WebAuthn security keys for a username */
   getWebauthnKeys: Array<Scalars['String']>;
   /** Fetch all lives */
@@ -408,7 +408,7 @@ export type GetLifeByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetLifeByIdQuery = { __typename?: 'Query', life: { __typename?: 'Life', fullName: string, title: string, description: string, birthday: string | Date, hobbies: Array<string> } };
+export type GetLifeByIdQuery = { __typename?: 'Query', life?: { __typename?: 'Life', fullName: string, title: string, description: string, birthday: string | Date, hobbies: Array<string> } | null };
 
 export type GetListLivesQueryVariables = Exact<{ [key: string]: never; }>;
 
