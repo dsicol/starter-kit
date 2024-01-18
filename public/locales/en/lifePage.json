@@ -1,0 +1,8 @@
+{
+    "listLives": {
+        "title": "List of Lives"
+    },
+    "lifeDetail": {
+        "title": "Life by ID"
+    }
+}
