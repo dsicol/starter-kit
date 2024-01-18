@@ -32,7 +32,7 @@ type Query {
     """
     Fetch Life document by its ID
     """
-    getLife(id: ObjectID!): Life
+    getLife(id: ObjectID!): Life!
 
     """
     Fetch all lives

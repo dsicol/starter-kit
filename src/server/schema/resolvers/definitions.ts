@@ -246,7 +246,7 @@ export type GraphQLQuery = {
   /** Generate authenticator secret and qrcode */
   generateAuthenticatorSetup: GraphQLAuthenticatorSetup;
   /** Fetch Life document by its ID */
-  getLife?: Maybe<GraphQLLife>;
+  getLife: GraphQLLife;
   /** Fetch WebAuthn security keys for a username */
   getWebauthnKeys: Array<Scalars['String']>;
   /** Fetch all lives */
@@ -610,7 +610,7 @@ export type GraphQLQueryResolvers<ContextType = Context, ParentType extends Grap
   currentUser?: Resolver<Maybe<GraphQLResolversTypes['User']>, ParentType, ContextType>;
   generateAuthenticatorChallenge?: Resolver<Maybe<GraphQLResolversTypes['AuthenticationWithWebPublicKeyCredential']>, ParentType, ContextType, RequireFields<GraphQLQueryGenerateAuthenticatorChallengeArgs, 'username'>>;
   generateAuthenticatorSetup?: Resolver<GraphQLResolversTypes['AuthenticatorSetup'], ParentType, ContextType>;
-  getLife?: Resolver<Maybe<GraphQLResolversTypes['Life']>, ParentType, ContextType, RequireFields<GraphQLQueryGetLifeArgs, 'id'>>;
+  getLife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLQueryGetLifeArgs, 'id'>>;
   getWebauthnKeys?: Resolver<Array<GraphQLResolversTypes['String']>, ParentType, ContextType, RequireFields<GraphQLQueryGetWebauthnKeysArgs, 'username'>>;
   listLives?: Resolver<Array<GraphQLResolversTypes['Life']>, ParentType, ContextType>;
   listUsers?: Resolver<GraphQLResolversTypes['PaginatedUsers'], ParentType, ContextType, RequireFields<GraphQLQueryListUsersArgs, 'pagination'>>;

@@ -151,7 +151,7 @@ type Query {
   """Generate authenticator secret and qrcode"""
   generateAuthenticatorSetup: AuthenticatorSetup!
   """Fetch Life document by its ID"""
-  getLife(id: ObjectID!): Life
+  getLife(id: ObjectID!): Life!
   """Fetch WebAuthn security keys for a username"""
   getWebauthnKeys(username: String!): [String!]!
   """Fetch all lives"""
