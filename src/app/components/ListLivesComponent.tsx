@@ -1,8 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { Life } from '../api';
 
-const ListLivesComponent = ({ lives }) => {
+type ListLivesComponentProp = { lives: [Life] };
+
+const ListLivesComponent = ({ lives }: ListLivesComponentProp) => {
     const { t } = useTranslation(['lifePage']);
 
     return (
