@@ -1,3 +1,4 @@
+import { Button, Col, Row } from 'antd';
 import { Formik, Field, Form } from 'formik';
 import { useCreateLifeMutation, CreateLifeMutationVariables } from '../api/index';
 
@@ -31,39 +32,60 @@ const CreateLifeComponent = () => {
                     hobbies: [],
                 }}
                 onSubmit={(lifeValues: LifeValues) => {
-                    debugger;
                     handleCreateLife({
                         ...lifeValues,
                         birthday: new Date(lifeValues.birthday),
                     });
                 }}
             >
+                // todo: Field as {Input}
                 <Form>
-                    <label htmlFor="firstName">First Name</label>
-                    <Field name="firstName" placeHolder="Enter first name" />
-                    <br />
+                    <Row align="middle" gutter={[16, 24]}>
+                        <Col span={12}>
+                            <label htmlFor="firstName">First Name</label>
+                        </Col>
+                        <Col span={12}>
+                            <Field name="firstName" placeHolder="Enter first name" />
+                        </Col>
 
-                    <label htmlFor="lastName">Last Name</label>
-                    <Field name="lastName" placeHolder="Enter last name" />
-                    <br />
+                        <Col span={12}>
+                            <label htmlFor="lastName">Last Name</label>
+                        </Col>
+                        <Col span={12}>
+                            <Field name="lastName" placeHolder="Enter last name" />
+                        </Col>
 
-                    <label htmlFor="title">Title</label>
-                    <Field name="title" placeHolder="Enter title" />
-                    <br />
+                        <Col span={12}>
+                            <label htmlFor="title">Title</label>
+                        </Col>
+                        <Col span={12}>
+                            <Field name="title" placeHolder="Enter title" />
+                        </Col>
 
-                    <label htmlFor="description">Description</label>
-                    <Field name="description" placeHolder="Enter description" />
-                    <br />
+                        <Col span={12}>
+                            <label htmlFor="description">Description</label>
+                        </Col>
+                        <Col span={12}>
+                            <Field name="description" placeHolder="Enter description" />
+                        </Col>
 
-                    <label htmlFor="birthday">Birthday</label>
-                    <Field name="birthday" type="date" />
-                    <br />
+                        <Col span={12}>
+                            <label htmlFor="birthday">Birthday</label> 
+                        </Col>
+                        <Col span={12}>
+                            <Field name="birthday" type="date" />
+                        </Col>
 
-                    <label htmlFor="hobbies">Hobbies</label>
-                    <Field name="hobbies" placeHolder="Enter Hobbies" />
-                    <br />
-
-                    <button type="submit">Create life</button>
+                        <Col span={12}>
+                            <label htmlFor="hobbies">Hobbies</label>
+                        </Col>
+                        <Col span={12}>
+                            <Field name="hobbies" placeHolder="Enter Hobbies" />
+                        </Col>
+                        <Button htmlType="submit" block>
+                            Create life
+                        </Button>
+                    </Row>
                 </Form>
             </Formik>
         </div>
