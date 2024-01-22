@@ -1,4 +1,4 @@
-import { Button, Col, Row, Input } from 'antd';
+import { Button, Col, Input } from 'antd';
 import { Formik, Field, Form } from 'formik';
 import { useNavigate } from 'react-router';
 import { useCreateLifeMutation, CreateLifeMutationVariables } from '../api/index';
