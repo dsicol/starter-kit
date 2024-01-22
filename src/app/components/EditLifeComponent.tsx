@@ -1,7 +1,10 @@
-import { Button, Col, Row, Input } from 'antd';
+import { Button, Col, Input } from 'antd';
 import { Formik, Field, Form } from 'formik';
-import { useNavigate } from 'react-router';
-import { useCreateLifeMutation, CreateLifeMutationVariables } from '../api/index';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEditLifeMutation, EditLifeMutationVariables } from '../api/index';
+
+type EditLifeComponentProp = { id: string };
 
 interface LifeValues {
     firstName: string;
@@ -12,30 +15,40 @@ interface LifeValues {
     hobbies: string[];
 }
 
-const CreateLifeComponent = () => {
-    const [mutation] = useCreateLifeMutation();
+const EditLifeComponent = ({ id }: EditLifeComponentProp) => {
+    const location = useLocation();
     const navigate = useNavigate();
-    const handleCreateLife = async (lifeValues: LifeValues) => {
-        const createLifeMutationVariables: CreateLifeMutationVariables = {
-            lifeInput: lifeValues,
+    const defaultVariables = location.state;
+    // Use of variables options in declaration to set default values
+    // Mutation variables option overwrites this when called
+    const [mutation] = useEditLifeMutation({
+        variables: {
+            id,
+            edits: { ...defaultVariables },
+        },
+    });
+    const handleEditLife = async (id, lifeValues: LifeValues) => {
+        const editLifeMutationVariables: EditLifeMutationVariables = {
+            id,
+            edits: lifeValues,
         };
-        await mutation({ variables: createLifeMutationVariables });
-        navigate('/lives');
+        await mutation({ variables: editLifeMutationVariables });
+        navigate(-1);
     };
 
     return (
         <div>
             <Formik
                 initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    title: '',
-                    description: '',
-                    birthday: new Date(),
-                    hobbies: [],
+                    firstName: defaultVariables.firstName,
+                    lastName: defaultVariables.lastName,
+                    title: defaultVariables.title,
+                    description: defaultVariables.description,
+                    birthday: new Date(defaultVariables.birthday),
+                    hobbies: defaultVariables.hobbies,
                 }}
                 onSubmit={(lifeValues: LifeValues) => {
-                    handleCreateLife({
+                    handleEditLife(id, {
                         ...lifeValues,
                         birthday: new Date(lifeValues.birthday),
                     });
@@ -84,7 +97,7 @@ const CreateLifeComponent = () => {
                         <Field as={Input} name="hobbies" placeHolder="Enter Hobbies" variant="filled" />
                     </Col>
                     <Button htmlType="submit" size="large">
-                        Create life
+                        Edit this life
                     </Button>
                 </Form>
             </Formik>
@@ -92,4 +105,4 @@ const CreateLifeComponent = () => {
     );
 };
 
-export default CreateLifeComponent;
+export default EditLifeComponent;

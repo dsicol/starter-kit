@@ -47,6 +47,15 @@ type AuthenticatorSetup {
 
 scalar DateTime
 
+input EditLifeInput {
+  birthday: DateTime
+  description: String
+  firstName: String
+  hobbies: [String]
+  lastName: String
+  title: String
+}
+
 union ExternalLink = ResetPasswordLink
 
 scalar JSONObject
@@ -95,8 +104,12 @@ type Mutation {
   createAccount(email: String!, password: String!, username: String!): User!
   """Create a new Life object"""
   createlife(lifeInput: LifeInput!): Life!
+  """Deletes a Life object"""
+  deleteLife(id: ObjectID!): Life
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
+  """Edits fields of Life object"""
+  editLife(edits: EditLifeInput!, id: ObjectID!): Life!
   """Enable 2FA / Authenticator for the signed user"""
   enableAuthenticator(secret: String!, token: String!): User!
   """Generate a challenge to authenticate with web credentials"""

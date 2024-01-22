@@ -1,22 +1,34 @@
+import { Card, Space } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Life } from '../api';
 
-type ListLivesComponentProp = { lives: Array<Life> };
+type ListLivesComponentProp = {
+    lives: {
+        id: string;
+        fullName: string;
+        title: string;
+        description: string;
+    }[];
+};
 
 const ListLivesComponent = ({ lives }: ListLivesComponentProp) => {
     const { t } = useTranslation(['lifePage']);
 
     return (
         <div>
-            <ul>
-                {lives.map(life => (
-                    <li key={life.id}>
-                        <Link to={`/lives/${life.id}`}>{life.fullName}</Link>
-                    </li>
-                ))}
-            </ul>
+            {lives.map(life => (
+                <Space direction="vertical" size={16}>
+                    <Card
+                        extra={<Link to={`/lives/${life.id}`}>Details</Link>}
+                        style={{ width: 300 }}
+                        title={life.fullName}
+                    >
+                        <p>{life.title}</p>
+                        <p>{life.description}</p>
+                    </Card>
+                </Space>
+            ))}
         </div>
     );
 };

@@ -17,3 +17,15 @@ mutation createLife($lifeInput: LifeInput!) {
         ...CreateLifeInput
     }
 }
+
+mutation editLife($id: ObjectID!, $edits: EditLifeInput!) {
+    life: editLife(id: $id, edits: $edits) {
+        ...EditLifeInput
+    }
+}
+
+mutation deleteLife($id: ObjectID!) {
+    life: deleteLife(id: $id) {
+        ...FullLifeFields
+    }
+}

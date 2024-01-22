@@ -1,4 +1,6 @@
 fragment LifeDetail on Life {
+    firstName
+    lastName
     fullName
     title
     description
@@ -9,9 +11,30 @@ fragment LifeDetail on Life {
 fragment LifeOverview on Life {
     id
     fullName
+    title 
+    description
 }
 
 fragment CreateLifeInput on Life {
+    firstName
+    lastName
+    title
+    description
+    birthday
+    hobbies
+}
+
+fragment EditLifeInput on Life {
+    firstName
+    lastName
+    title
+    description
+    birthday
+    hobbies
+}
+
+fragment FullLifeFields on Life {
+    id
     firstName
     lastName
     title

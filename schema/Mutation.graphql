@@ -86,7 +86,17 @@ type Mutation {
     revokeUserSession(id: ObjectID!, displayNotice: Boolean): Boolean!
 
     """
+    Edits fields of Life object
+    """
+    editLife(id: ObjectID!, edits: EditLifeInput!): Life!
+
+    """
     Create a new Life object
     """
     createlife(lifeInput: LifeInput!): Life!
+
+    """
+    Deletes a Life object
+    """
+    deleteLife(id: ObjectID!): Life
 }

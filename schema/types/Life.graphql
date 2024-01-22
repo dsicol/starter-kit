@@ -17,3 +17,12 @@ input LifeInput {
     birthday: DateTime!
     hobbies: [String!]!
 }
+
+input EditLifeInput {
+    firstName: String
+    lastName: String
+    description: String
+    title: String
+    birthday: DateTime
+    hobbies: [String]
+}

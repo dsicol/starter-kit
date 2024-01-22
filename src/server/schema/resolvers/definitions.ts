@@ -68,6 +68,15 @@ export type GraphQLAuthenticatorSetup = {
   secret: Scalars['String'];
 };
 
+export type GraphQLEditLifeInput = {
+  birthday?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  hobbies?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  lastName?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type GraphQLExternalLink = GraphQLResetPasswordLink;
 
 export type GraphQLLife = {
@@ -114,8 +123,12 @@ export type GraphQLMutation = {
   createAccount: GraphQLUser;
   /** Create a new Life object */
   createlife: GraphQLLife;
+  /** Deletes a Life object */
+  deleteLife?: Maybe<GraphQLLife>;
   /** Disable 2FA / Authenticator for the signed user */
   disableAuthenticator: GraphQLUser;
+  /** Edits fields of Life object */
+  editLife: GraphQLLife;
   /** Enable 2FA / Authenticator for the signed user */
   enableAuthenticator: GraphQLUser;
   /** Generate a challenge to authenticate with web credentials */
@@ -195,6 +208,17 @@ export type GraphQLMutationCreateAccountArgs = {
 
 export type GraphQLMutationCreatelifeArgs = {
   lifeInput: GraphQLLifeInput;
+};
+
+
+export type GraphQLMutationDeleteLifeArgs = {
+  id: Scalars['ObjectID'];
+};
+
+
+export type GraphQLMutationEditLifeArgs = {
+  edits: GraphQLEditLifeInput;
+  id: Scalars['ObjectID'];
 };
 
 
@@ -449,6 +473,7 @@ export type GraphQLResolversTypes = {
   AuthenticatorSetup: ResolverTypeWrapper<GraphQLAuthenticatorSetup>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
+  EditLifeInput: GraphQLEditLifeInput;
   ExternalLink: ResolverTypeWrapper<ExternalLink>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   JSONObject: ResolverTypeWrapper<Scalars['JSONObject']>;
@@ -486,6 +511,7 @@ export type GraphQLResolversParentTypes = {
   AuthenticatorSetup: GraphQLAuthenticatorSetup;
   Boolean: Scalars['Boolean'];
   DateTime: Scalars['DateTime'];
+  EditLifeInput: GraphQLEditLifeInput;
   ExternalLink: ExternalLink;
   Int: Scalars['Int'];
   JSONObject: Scalars['JSONObject'];
@@ -586,7 +612,9 @@ export type GraphQLMutationResolvers<ContextType = Context, ParentType extends G
   completeWebPublicKeyCredentialRegistration?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationCompleteWebPublicKeyCredentialRegistrationArgs, 'response' | 'token'>>;
   createAccount?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationCreateAccountArgs, 'email' | 'password' | 'username'>>;
   createlife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLMutationCreatelifeArgs, 'lifeInput'>>;
+  deleteLife?: Resolver<Maybe<GraphQLResolversTypes['Life']>, ParentType, ContextType, RequireFields<GraphQLMutationDeleteLifeArgs, 'id'>>;
   disableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType>;
+  editLife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLMutationEditLifeArgs, 'edits' | 'id'>>;
   enableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationEnableAuthenticatorArgs, 'secret' | 'token'>>;
   generateWebCredentialAuthentication?: Resolver<Maybe<GraphQLResolversTypes['AuthenticationWithWebPublicKeyCredential']>, ParentType, ContextType, RequireFields<GraphQLMutationGenerateWebCredentialAuthenticationArgs, 'username'>>;
   refreshCredentials?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
