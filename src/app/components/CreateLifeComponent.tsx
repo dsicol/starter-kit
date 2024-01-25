@@ -4,23 +4,11 @@ import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router';
 import { useCreateLifeMutation, CreateLifeMutationVariables } from '../api/index';
 
-interface LifeValues {
-    firstName: string;
-    lastName: string;
-    title: string;
-    description: string;
-    birthday: Date;
-    hobbies: string[];
-}
-
 const CreateLifeComponent = () => {
     const [mutation] = useCreateLifeMutation();
     const navigate = useNavigate();
-    const handleCreateLife = useCallback(async (lifeValues: LifeValues) => {
-        const createLifeMutationVariables: CreateLifeMutationVariables = {
-            lifeInput: lifeValues,
-        };
-        await mutation({ variables: createLifeMutationVariables });
+    const handleCreateLife = useCallback(async (lifeValues: CreateLifeMutationVariables) => {
+        await mutation({ variables: lifeValues });
         navigate('/lives');
     }, []);
 
@@ -38,10 +26,12 @@ const CreateLifeComponent = () => {
                     }),
                     []
                 )}
-                onSubmit={(lifeValues: LifeValues) => {
+                onSubmit={lifeValues => {
                     handleCreateLife({
-                        ...lifeValues,
-                        birthday: new Date(lifeValues.birthday),
+                        lifeInput: {
+                            ...lifeValues,
+                            birthday: new Date(lifeValues.birthday),
+                        },
                     });
                 }}
             >

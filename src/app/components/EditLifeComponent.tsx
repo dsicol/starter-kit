@@ -6,15 +6,6 @@ import { useEditLifeMutation, EditLifeMutationVariables } from '../api/index';
 
 type EditLifeComponentProp = { id: string };
 
-interface LifeValues {
-    firstName: string;
-    lastName: string;
-    title: string;
-    description: string;
-    birthday: Date;
-    hobbies: string[];
-}
-
 const EditLifeComponent = ({ id }: EditLifeComponentProp) => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,12 +18,8 @@ const EditLifeComponent = ({ id }: EditLifeComponentProp) => {
             edits: { ...defaultVariables },
         },
     });
-    const handleEditLife = useCallback(async (id, lifeValues: LifeValues) => {
-        const editLifeMutationVariables: EditLifeMutationVariables = {
-            id,
-            edits: lifeValues,
-        };
-        await mutation({ variables: editLifeMutationVariables });
+    const handleEditLife = useCallback(async (lifeValues: EditLifeMutationVariables) => {
+        await mutation({ variables: lifeValues });
         navigate(-1);
     }, []);
 
@@ -50,10 +37,13 @@ const EditLifeComponent = ({ id }: EditLifeComponentProp) => {
                     }),
                     []
                 )}
-                onSubmit={(lifeValues: LifeValues) => {
-                    handleEditLife(id, {
-                        ...lifeValues,
-                        birthday: new Date(lifeValues.birthday),
+                onSubmit={lifeValues => {
+                    handleEditLife({
+                        id,
+                        edits: {
+                            ...lifeValues,
+                            birthday: new Date(lifeValues.birthday),
+                        },
                     });
                 }}
             >
