@@ -3,9 +3,8 @@ import { GraphQLQueryResolvers } from '../definitions';
 
 const query: GraphQLQueryResolvers['listLives'] = async root => {
     const { collections } = await getDatabaseContext();
-    const lives = await collections.lives.find().toArray();
 
-    return lives;
+    return collections.lives.find().toArray();
 };
 
 export default query;
