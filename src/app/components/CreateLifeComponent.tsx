@@ -1,5 +1,6 @@
 import { Button, Col, Input } from 'antd';
 import { Formik, Field, Form } from 'formik';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import { useCreateLifeMutation, CreateLifeMutationVariables } from '../api/index';
 
@@ -15,13 +16,13 @@ interface LifeValues {
 const CreateLifeComponent = () => {
     const [mutation] = useCreateLifeMutation();
     const navigate = useNavigate();
-    const handleCreateLife = async (lifeValues: LifeValues) => {
+    const handleCreateLife = useCallback(async (lifeValues: LifeValues) => {
         const createLifeMutationVariables: CreateLifeMutationVariables = {
             lifeInput: lifeValues,
         };
         await mutation({ variables: createLifeMutationVariables });
         navigate('/lives');
-    };
+    }, []);
 
     return (
         <div>
