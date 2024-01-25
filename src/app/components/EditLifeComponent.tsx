@@ -1,6 +1,6 @@
 import { Button, Col, Input } from 'antd';
 import { Formik, Field, Form } from 'formik';
-import React from 'react';
+import { useCallback, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEditLifeMutation, EditLifeMutationVariables } from '../api/index';
 
@@ -27,26 +27,29 @@ const EditLifeComponent = ({ id }: EditLifeComponentProp) => {
             edits: { ...defaultVariables },
         },
     });
-    const handleEditLife = async (id, lifeValues: LifeValues) => {
+    const handleEditLife = useCallback(async (id, lifeValues: LifeValues) => {
         const editLifeMutationVariables: EditLifeMutationVariables = {
             id,
             edits: lifeValues,
         };
         await mutation({ variables: editLifeMutationVariables });
         navigate(-1);
-    };
+    }, []);
 
     return (
         <div>
             <Formik
-                initialValues={{
-                    firstName: defaultVariables.firstName,
-                    lastName: defaultVariables.lastName,
-                    title: defaultVariables.title,
-                    description: defaultVariables.description,
-                    birthday: new Date(defaultVariables.birthday),
-                    hobbies: defaultVariables.hobbies,
-                }}
+                initialValues={useMemo(
+                    () => ({
+                        firstName: defaultVariables.firstName,
+                        lastName: defaultVariables.lastName,
+                        title: defaultVariables.title,
+                        description: defaultVariables.description,
+                        birthday: new Date(defaultVariables.birthday),
+                        hobbies: defaultVariables.hobbies,
+                    }),
+                    []
+                )}
                 onSubmit={(lifeValues: LifeValues) => {
                     handleEditLife(id, {
                         ...lifeValues,
