@@ -1,6 +1,6 @@
 import { Button, Col, Input } from 'antd';
 import { Formik, Field, Form } from 'formik';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router';
 import { useCreateLifeMutation, CreateLifeMutationVariables } from '../api/index';
 
@@ -27,14 +27,17 @@ const CreateLifeComponent = () => {
     return (
         <div>
             <Formik
-                initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    title: '',
-                    description: '',
-                    birthday: new Date(),
-                    hobbies: [],
-                }}
+                initialValues={useMemo(
+                    () => ({
+                        firstName: '',
+                        lastName: '',
+                        title: '',
+                        description: '',
+                        birthday: new Date(),
+                        hobbies: [],
+                    }),
+                    []
+                )}
                 onSubmit={(lifeValues: LifeValues) => {
                     handleCreateLife({
                         ...lifeValues,
