@@ -28,12 +28,7 @@ const LifeDetailsComponent = ({ id }: LifeDetailsComponentProp) => {
             relative: 'path',
             state: {
                 id,
-                firstName: life.firstName,
-                lastName: life.lastName,
-                title: life.title,
-                description: life.description,
-                birthday: life.birthday,
-                hobbies: life.hobbies,
+                ...life,
             },
         });
     };

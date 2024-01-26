@@ -18,7 +18,7 @@ const ListLivesComponent = ({ lives }: ListLivesComponentProp) => {
     return (
         <div>
             {lives.map(life => (
-                <Space direction="vertical" size={16}>
+                <Space size="middle" style={{ display: 'flex' }}>
                     <Card
                         extra={<Link to={`/lives/${life.id}`}>Details</Link>}
                         style={{ width: 300 }}
