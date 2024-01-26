@@ -28,4 +28,14 @@ type Query {
     Generate challenge to authenticate with WebAuthn
     """
     generateAuthenticatorChallenge(username: String!): AuthenticationWithWebPublicKeyCredential
+
+    """
+    Fetch Life document by its ID
+    """
+    getLife(id: ObjectID!): Life
+
+    """
+    Fetch all lives
+    """
+    listLives: [Life!]!
 }

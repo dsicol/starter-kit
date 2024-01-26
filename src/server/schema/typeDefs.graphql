@@ -47,9 +47,38 @@ type AuthenticatorSetup {
 
 scalar DateTime
 
+input EditLifeInput {
+  birthday: DateTime
+  description: String
+  firstName: String
+  hobbies: [String]
+  lastName: String
+  title: String
+}
+
 union ExternalLink = ResetPasswordLink
 
 scalar JSONObject
+
+type Life {
+  birthday: DateTime!
+  description: String!
+  firstName: String!
+  fullName: String!
+  hobbies: [String!]!
+  id: ObjectID!
+  lastName: String!
+  title: String!
+}
+
+input LifeInput {
+  birthday: DateTime!
+  description: String!
+  firstName: String!
+  hobbies: [String!]!
+  lastName: String!
+  title: String!
+}
 
 type MessageNotice {
   date: DateTime!
@@ -73,8 +102,14 @@ type Mutation {
   completeWebPublicKeyCredentialRegistration(response: JSONObject!, token: String!): Boolean!
   """Create a new account/user"""
   createAccount(email: String!, password: String!, username: String!): User!
+  """Create a new Life object"""
+  createlife(lifeInput: LifeInput!): Life!
+  """Deletes a Life object"""
+  deleteLife(id: ObjectID!): Life
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
+  """Edits fields of Life object"""
+  editLife(edits: EditLifeInput!, id: ObjectID!): Life!
   """Enable 2FA / Authenticator for the signed user"""
   enableAuthenticator(secret: String!, token: String!): User!
   """Generate a challenge to authenticate with web credentials"""
@@ -128,8 +163,12 @@ type Query {
   generateAuthenticatorChallenge(username: String!): AuthenticationWithWebPublicKeyCredential
   """Generate authenticator secret and qrcode"""
   generateAuthenticatorSetup: AuthenticatorSetup!
+  """Fetch Life document by its ID"""
+  getLife(id: ObjectID!): Life
   """Fetch WebAuthn security keys for a username"""
   getWebauthnKeys(username: String!): [String!]!
+  """Fetch all lives"""
+  listLives: [Life!]!
   """List users"""
   listUsers(filter: UserFilteringRule, pagination: Pagination!, sort: UserSortingRule): PaginatedUsers!
   """Retrieve a link information"""

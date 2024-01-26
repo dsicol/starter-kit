@@ -1,0 +1,31 @@
+#import "./life.fragments.graphql"
+
+query getLifeByID($id: ObjectID!) {
+    life: getLife(id: $id) {
+        ...LifeDetail
+    }
+}
+
+query getListLives {
+    life: listLives {
+        ...LifeOverview
+    }
+}
+
+mutation createLife($lifeInput: LifeInput!) {
+    life: createlife(lifeInput: $lifeInput) {
+        ...CreateLifeInput
+    }
+}
+
+mutation editLife($id: ObjectID!, $edits: EditLifeInput!) {
+    life: editLife(id: $id, edits: $edits) {
+        ...EditLifeInput
+    }
+}
+
+mutation deleteLife($id: ObjectID!) {
+    life: deleteLife(id: $id) {
+        ...FullLifeFields
+    }
+}
